@@ -1,0 +1,12 @@
+@import "../variables.scss";
+
+.post-container{
+    @include pageContainer;
+}
+.post-photo{
+    padding: 0;
+    img{
+        width: 100%;
+        max-height: 50vh;
+    }
+}

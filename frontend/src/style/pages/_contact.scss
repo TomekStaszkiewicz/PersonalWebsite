@@ -1,0 +1,15 @@
+@import "../variables.scss";
+
+.contact-page{
+    @include pageContainer;
+}
+
+.contact-email-link{
+    font-size: 1em;
+    color: black;
+    text-decoration: underline;
+    &:hover{
+        color: #444444;
+        text-decoration: none;
+    }
+}

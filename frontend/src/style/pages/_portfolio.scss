@@ -1,0 +1,15 @@
+@import "../variables.scss";
+
+.portfolio-container{
+    @include pageContainer;
+}
+
+.portfolio-card{
+    background-color: #a8a7a3;
+    *{
+        background-color: inherit;
+    }
+}
+.portfolio-button{
+    background-color: black;
+}

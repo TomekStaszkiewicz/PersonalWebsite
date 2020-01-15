@@ -1,0 +1,38 @@
+// all the variables and main settings here
+
+//variables
+$background-color: #ffe6f0;
+$font: 'Open Sans', sans-serif;
+
+
+//navigation
+$nav-background: $background-color;
+$nav-border: #707070;
+
+
+//mixins
+@mixin toCenter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+}
+@mixin pageContainer{
+    position: relative;
+    width: 80%;
+    left: 10%;
+    padding: 1em;
+    min-height: 100vh;
+
+    @media screen and (max-width: 768px)
+    {
+        width: 100%;
+        margin: 0;
+        left: 0;
+    }
+}
+
+@mixin toSquare( $size ){
+    width: $size;
+    height: $size;
+}
