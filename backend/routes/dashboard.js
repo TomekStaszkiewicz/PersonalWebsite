@@ -14,6 +14,9 @@ var storage = multer.diskStorage({
          }  
 })
 const upload = multer({storage: storage});
+const fs = require('fs');
+
+
 
 router.get('/', (req, res) => {
     res.json('dashboard');
@@ -24,19 +27,45 @@ router.get('/post/:id', (req, res) => {
 });
 
 router.post('/post', upload.single('image'), (req, res, next) => {
-    const imagePath = `http://localhost:${require('../config').PORT}/image/${req.file.filename}`;
 
-    let bodyPost = {
+    const bodyPost = {
         title: req.body.title,
-        content: req.body.title,
-        photo: imagePath,
+        content: req.body.content,
+        photo: req.file.filename,
     }
-    let newPost = new Post( bodyPost );
+    const newPost = new Post( bodyPost );
     Post.create( newPost, function(err, newPost ){
         if( err )res.send(err);
         else res.json(newPost);
     });
 });
+
+
+router.get('/post', ( req, res ) => {
+    const allPosts = Post.getAll( function( err, result ){
+        if( err )throw err;
+        else res.json( result );
+    }) 
+});
+
+router.delete('/post/delete/:id/:photo', async (req, res)=> {
+    //deleting stored image file
+    let photoPath = `./uploads/${req.params.photo}`;
+    await fs.unlink( photoPath, err => {
+        if(err)throw err;
+        else console.log("Post deleted");
+    } );
+
+    //deleting from DB
+
+    Post.delete( req.params.id, (err, result ) => {
+        if( err )throw err;
+        else res.json({message: 'Post deleted'});
+    })
+
+
+})
+
 
 router.get('/visits', async function( req, res ){
     let allVisits = await counter.getCount(); 
@@ -49,6 +78,13 @@ router.get('/messages', (req, res)=>{
             if( err )throw err;
             else res.json(mess);
     });
+})
+
+router.delete('/messages/delete/:id', (req, res) => {
+    messModel.delete( req.params.id, function(err, result){
+        if(err)throw err;
+        else res.json({message: 'Message deleted'});
+    })
 })
 
 

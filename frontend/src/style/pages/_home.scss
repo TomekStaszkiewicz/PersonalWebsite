@@ -1,0 +1,17 @@
+@import '../variables';
+
+.home-container{
+    @include pageContainer;
+}
+
+.main-question{
+    z-index: 99;
+    position: absolute;
+    top: 20%;
+    left: 100%;
+    transform: translate( -200%, -100% );
+    color: black;
+    svg{
+        font-size: 2em;
+    }
+  }

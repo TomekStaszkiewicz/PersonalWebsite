@@ -25,7 +25,6 @@ export default {
   data(){
     return{
       githubProjects: [],
-      websiteLinks: [],
     }
   },
 
@@ -36,8 +35,6 @@ export default {
       .then( res => res.json())
         .then(json => this.githubProjects = json)
           .catch( err => console.error(err));
-
-      this.websiteLinks = ["http://www.sencare-de.com"];
   }
 }
 </script>

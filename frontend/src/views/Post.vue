@@ -1,14 +1,13 @@
 <template>
   <section class="post-container">
      <div class="col-12 post-photo">
-      <img :src="post.photo" :alt="post.title">
+      <img :src="photourl + post.photo" :alt="post.title">
       </div>
     <article>
       <header>
       <h1>{{post.title}}</h1>
       </header>
-      <p>
-      {{post.content}}
+      <p v-html="post.content">
       </p>
     </article>
   </section>
@@ -23,16 +22,19 @@ export default {
   data(){
     return{
         post: {},
+        photourl: '',
     }
   },
   mounted(){
     apiURL += this.$props.id;
     axios.get(apiURL)
       .then( res => {
-        console.log( res )
         this.post = res.data[0];
+    this.photourl = require('../router/api.js').publicURLS.getPhoto;
+
+        console.log(this.post.photo, this.photourl)
       })
-      .catch( err => console.error( err ));
+      .catch( err => console.error('ERROR' +  err ));
   }
 }
 </script>

@@ -60,6 +60,17 @@ Post.update = function( postId, newPost, result ){
         }
     });
 }
-//delete
+
+Post.delete = function( id, result){
+    db.query("DELETE FROM posts WHERE id=?", [id], (err, res) => {
+        if( err ){
+            console.error( err );
+            result( err, null );
+        }
+        else{
+            result( null, res );
+        }
+    })
+}
 
 module.exports = Post;  

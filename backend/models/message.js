@@ -34,4 +34,16 @@ Message.getAll = function( result ){
     })
 }
 
+Message.delete = function( id, result ){
+    db.query("DELETE FROM messages WHERE id = ?", [id], (err, res) => {
+        if(err){
+            console.log("Error ", err);
+            result(err, null);
+        }
+        else{
+            result( null, res );
+        }
+    })
+}
+
 module.exports = Message;  
