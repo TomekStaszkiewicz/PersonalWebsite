@@ -32,7 +32,6 @@ export default {
         this.post = res.data[0];
     this.photourl = require('../router/api.js').publicURLS.getPhoto;
 
-        console.log(this.post.photo, this.photourl)
       })
       .catch( err => console.error('ERROR' +  err ));
   }

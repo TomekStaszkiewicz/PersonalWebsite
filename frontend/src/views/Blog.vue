@@ -4,7 +4,7 @@
       
       <a v-for="p in this.posts" 
       v-bind:key="p.id"
-      :href="`/post/${p.id}`"
+      :href="`/#/post/${p.id}`"
       class="col-12 blog-big my-3">
         <img :alt="p.title" :src="photoURL + p.photo">
         <span>

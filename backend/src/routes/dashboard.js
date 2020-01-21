@@ -3,11 +3,11 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/post');
 const messModel = require('../models/message');
-const counter = require('express-visit-counter').Loader;
 const multer  = require('multer');
+const path = require('path');
 var storage = multer.diskStorage({
         destination: function(req, file,cb){
-            cb(null, './uploads/')
+            cb(null, path.join(__dirname, '../uploads/'));
         },
         filename: function(req, file, cb){
             cb( null, file.originalname)
@@ -50,8 +50,8 @@ router.get('/post', ( req, res ) => {
 
 router.delete('/post/delete/:id/:photo', async (req, res)=> {
     //deleting stored image file
-    let photoPath = `./uploads/${req.params.photo}`;
-    await fs.unlink( photoPath, err => {
+    let photoPath = `../uploads/${req.params.photo}`;
+    await fs.unlink( path.join(__dirname, photoPath), err => {
         if(err)throw err;
         else console.log("Post deleted");
     } );
@@ -67,10 +67,6 @@ router.delete('/post/delete/:id/:photo', async (req, res)=> {
 })
 
 
-router.get('/visits', async function( req, res ){
-    let allVisits = await counter.getCount(); 
-    res.json(allVisits);
-})
 
 router.get('/messages', (req, res)=>{
     const result = messModel.getAll( function(err, mess)

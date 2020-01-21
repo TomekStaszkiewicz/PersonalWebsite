@@ -11,16 +11,16 @@
 
             <b-form-group
               id="email-input-group"
-              label="Adres email: "
+              label="Email"
               label-for="email"
-              description="Twój email będzie widoczny tylko dla mnie :)"
+              description="It will be visible just for me :)"
             >
             <b-form-input
             id="email"
             v-model="message.email"
             type="email"
             required
-            placeholder="Twój adres email"
+            placeholder="Your email addres"
             >
             </b-form-input>
             </b-form-group>
@@ -28,19 +28,19 @@
 
             <b-form-group
               id="content-input-group"
-              label="Twoja wiadomość: "
+              label="Your message"
               label-for="content"
             >
               <b-form-textarea
               id="content"
               v-model="message.content"
               required
-              placeholder="Twoja wiadomość"
+              placeholder="Your message"
               >
               </b-form-textarea>
             </b-form-group>
 
-          <b-button type="submit">Wyślij!</b-button>
+          <b-button type="submit">Send!</b-button>
           </b-form>
         </section>
     </div>

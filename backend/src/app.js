@@ -6,7 +6,6 @@ const public_routes = require('./routes/public.js');
 const dashboard_routes = require('./routes/dashboard.js');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const counter = require('express-visit-counter');
 const path = require('path');
 
 app.use(bodyParser.json());
@@ -20,6 +19,5 @@ app.get( '/image/:image',  ( req, res) => {
 app.use('/', public_routes);
 app.use('/admin/', dashboard_routes);
 
-app.use(counter.initialize());
 
 app.listen( PORT, () => console.log(`Server is running on port ${PORT}`));

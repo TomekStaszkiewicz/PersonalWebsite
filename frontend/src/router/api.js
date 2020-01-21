@@ -10,7 +10,7 @@ const publicURLS = {
 
 const adminURLS = {
     allMessages:        baseURL + "admin/messages",
-    allVisits:          baseURL + "admin/visits",
+    // allVisits:          baseURL + "admin/visits",
     allPosts:           baseURL + "admin/post",
     postCreate:         baseURL + "admin/post",
     deleteMessage:      baseURL + "admin/messages/delete/",

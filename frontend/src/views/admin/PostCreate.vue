@@ -1,6 +1,6 @@
 <template>
 <section class="dashboard-create-page">
-<a href="/dashboard" class="btn btn-warning">Powrót</a>
+<a href="/#/dashboard" class="btn btn-warning">Powrót</a>
     <b-form @submit.prevent="onSubmit">
      <b-form-group id="input-group-image" label="Dodaj zdjęcie:" label-for="image">
         <b-form-file
@@ -67,7 +67,6 @@
                                 };
            
 
-                console.log( fd );
                 fetch(URL, 
                 config,
                 )

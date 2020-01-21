@@ -14,7 +14,7 @@
     </th>
     </tr>
    <tr v-for="m in messages" v-bind:key="m.id">
-        <td><a :href="'mailto:'+m.email">{{m.email}}</a></td><td>{{Stm.content}}</td><td><a class="btn btn-warning" href="javascript:void(0)" @click="deleteMessage(m.id)">Usuń</a></td>
+        <td><a :href="'mailto:'+m.email">{{m.email}}</a></td><td>{{m.content}}</td><td><a class="btn btn-warning" href="javascript:void(0)" @click="deleteMessage(m.id)">Usuń</a></td>
         <hr>
         </tr>
     </table>
@@ -32,11 +32,11 @@
     </th>
     </tr>
    <tr v-for="p in posts" v-bind:key="p.id" >
-        <td v-html="p.title"></td><td v-html="str.substring( p.content, 20)"></td><td><a class="btn btn-warning" href="javascript:void(0)" @click="deletePost(p.id, p.photo)">Delete</a></td>
+        <td v-html="p.title"></td><td v-html="p.content.substring(20)"></td><td><a class="btn btn-warning" href="javascript:void(0)" @click="deletePost(p.id, p.photo)">Delete</a></td>
         <hr>
         </tr>
     </table>
-    <a href="/dashboard/post/create" class="btn btn-danger col-12">Dodaj nowy post</a>
+    <a href="/#/dashboard/post/create" class="btn btn-danger col-12">Dodaj nowy post</a>
 </section>
 
 </template>
@@ -44,7 +44,7 @@
 <script>
     const URLmessages = require('../../router/api.js').adminURLS.allMessages;
     const URLposts = require('../../router/api.js').adminURLS.allPosts;
-    const URLvisits = require('../../router/api.js').adminURLS.allVisits;
+    // const URLvisits = require('../../router/api.js').adminURLS.allVisits;
     const URLdeleteMessage = require('../../router/api.js').adminURLS.deleteMessage;
     const URLdeletePost = require('../../router/api.js').adminURLS.deletePost;
     import axios from 'axios';
@@ -53,22 +53,24 @@
         data(){
             return{
                 messages: [],
-                visits: 0,
+                // visits: 0,
                 posts: [],
             }
         },
         mounted(){
             axios.get(URLmessages)
             .then( res => this.messages = res.data)
+        //    .then(res => console.log(res))
             .catch( err => console.error(err));
 
-            axios.get(URLvisits)
-            .then( res => this.visits = res.data )
-            .catch( err => console.error(err));
+            // axios.get(URLvisits)
+            // .then( res => this.visits = res.data )
+            // .catch( err => console.error(err));
 
             
             axios.get(URLposts)
             .then( res => this.posts = res.data )
+            // .then( res => console.log(res))
             .catch( err => console.error(err));
         },
         methods: {
